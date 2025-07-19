@@ -3,7 +3,7 @@ const server = express();
 server.set('view engine', 'ejs');
 server.use(express.urlencoded())
 
-const students = [
+let students = [
     {
         id: 1,
         name: 'Vishal',
@@ -56,9 +56,30 @@ server.post('/add-student', (req, res) => {
     res.redirect('/');
 });
 
-server.get('/delete-student/:id', (req, res) => {
+server.get('/edit-student/:id', (req, res) => {
+    res.render('Edit_student');
     let id = req.params.id;
-    students = students.filter(student => student.id != id);
+    let student = students.find(stu => stu.id == id);
+    console.log(student);
+})
+
+server.post('/edit-student/:id', (req, res) => {
+    let id = req.params.id;
+    let updateStudent = req.body;
+    students = students.map(stu => {
+        if (stu.id == id) {
+            return { ...req.body, id: id };
+        } else {
+            return stu;
+        }
+    })
+    students = updateStudent;
+    res.redirect('/');
+})
+
+server.get("/delete-student/:id", (req, res) => {
+    let id = req.params.id;
+    students = students.filter(stu => stu.id != id);
     res.redirect('/');
 })
 

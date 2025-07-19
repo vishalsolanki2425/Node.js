@@ -24,15 +24,15 @@
             </tr>
         </thead>
         <tbody>
-            <% students.forEach(student=> { %>
+            <% students.map(stu => { %>
                 <tr>
-                    <td><%= student.id %></td>
-                    <td><%= student.name %></td>
-                    <td><%= student.age %></td>
-                    <td><%= student.email %></td>
-                    <td><%= student.mobileno %></td>
-                    <td><a href="/edit-student/<%= student.id %>">Edit</a></td>
-                    <td><a href="/delete-student/<%= student.id %>">Delete</a></td>
+                    <td><%= stu.id %></td>
+                    <td><%= stu.name %></td>
+                    <td><%= stu.age %></td>
+                    <td><%= stu.email %></td>
+                    <td><%= stu.mobileno %></td>
+                    <td><a href="/edit-student/<%= stu.id %>">Edit</a></td>
+                    <td><a href="/delete-student/<%= stu.id %>">Delete</a></td>
                 </tr>
                 <% }) %>
     </table>
