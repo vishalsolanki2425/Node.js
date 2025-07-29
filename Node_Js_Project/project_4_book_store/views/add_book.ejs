@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADD BOOK PAGE</title>
+    <link rel="stylesheet" href="dist/css/style.css">
+    <link rel="stylesheet" href="dist/css/style.min.css">
+
+</head>
+
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <a href="/">Book Store</a>
+            </div>
+            <div class="nav-links">
+                <a href="/">Home</a>
+                <a href="/addbook">Add Book</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <h2>Add New Book</h2>
+        <form action="/addbook" method="post">
+            <div class="form-group">
+                <label>Book Name</label>
+                <input type="text" name="title" placeholder="Enter Book Name...">
+            </div>
+
+            <div class="form-group">
+                <label>Author Name</label>
+                <input type="text" name="author" placeholder="Enter Author Name...">
+            </div>
+
+            <div class="form-group">
+                <label>Price</label>
+                <input type="number" name="price" placeholder="Enter Price..." step="0.01" min="0">
+            </div>
+
+            <div class="form-group">
+                <label>Category</label>
+                <input type="text" name="category" placeholder="Enter Category...">
+            </div>
+
+            <div class="form-group">
+                <label>Rating</label>
+                <input type="number" name="rating" placeholder="Enter Rating..." step="0.1" min="0" max="5">
+            </div>
+
+            <div class="form-group">
+                <label>Description</label>
+                <input type="text" name="description" placeholder="Enter Description...">
+            </div>
+
+            <div class="form-group">
+                <label>Image</label>
+                <input type="url" name="image" placeholder="Enter Image URL...">
+            </div>
+
+            <button class="form-submit">
+                Add Book
+            </button>
+        </form>
+    </div>
+</body>
+
+</html>
