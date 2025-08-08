@@ -1,0 +1,76 @@
+.inox-header {
+    background-color: #0c1b2a;
+    padding: 10px 20px;
+}
+
+.inox-header .navbar-brand {
+    color: #fff;
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.inox-header .navbar-brand:hover {
+    color: #fff;
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.inox-header .nav-link {
+    color: #fff !important;
+    margin-right: 20px;
+}
+
+.inox-header .nav-link:hover {
+    color: #ffc107 !important;
+}
+
+.inox-header .form-control {
+    border-radius: 20px;
+}
+
+.inox-header .btn-login {
+    background-color: #ffc107;
+    border: none;
+    color: #000;
+    border-radius: 20px;
+    padding: 5px 15px;
+}
+
+.carousel-item img {
+    height: 400px;
+    object-fit: cover;
+}
+
+body {
+    background-color: #f4f6f8;
+}
+
+.add-movie-container {
+    max-width: 600px;
+    margin: 40px auto;
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.add-movie-container h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #0c1b2a;
+}
+
+.form-label {
+    font-weight: 500;
+}
+
+.btn-primary {
+    width: 100%;
+    border-radius: 25px;
+    background-color: #0c1b2a;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #1f2d3d;
+}

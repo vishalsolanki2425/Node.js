@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/dist/css/sytle.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Add Movie Page</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg inox-header">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">INOX</a>
+            <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon text-white"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-4">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="add-movie"> Add Movies</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Offers</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                    </li>
+                </ul>
+                <form class="d-flex me-3" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search movies..." aria-label="Search">
+                </form>
+                <button class="btn btn-login">Login</button>
+            </div>
+        </div>
+    </nav>
+    <div class="container add-movie-container">
+        <h1>Edit Movie</h1>
+
+        <form method="post" action="/edit-movie/<%= movie._id %>" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label class="form-label">Title</label>
+                <input type="text" name="title" value="<%= movie.title %>" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Description</label>
+                <input type="text" name="description" value="<%= movie.description %>" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Release Year</label>
+                <input type="number" name="releaseYear" value="<%= movie.releaseYear %>" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Category</label>
+                <select class="form-select" name="category" required>
+                    <option value="">-- Select Category --</option>
+                    <option value="Action" <%=movie.category==="Action" ? "selected" : "" %>>Action</option>
+                    <option value="Comedy" <%=movie.category==="Comedy" ? "selected" : "" %>>Comedy</option>
+                    <option value="Drama" <%=movie.category==="Drama" ? "selected" : "" %>>Drama</option>
+                    <option value="Horror" <%=movie.category==="Horror" ? "selected" : "" %>>Horror</option>
+                    <option value="Romance" <%=movie.category==="Romance" ? "selected" : "" %>>Romance</option>
+                    <option value="Thriller" <%=movie.category==="Thriller" ? "selected" : "" %>>Thriller</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Language</label>
+                <select class="form-select" name="language" required>
+                    <option value="">-- Select Language --</option>
+                    <option value="Hindi" <%=movie.language==="Hindi" ? "selected" : "" %>>Hindi</option>
+                    <option value="English" <%=movie.language==="English" ? "selected" : "" %>>English</option>
+                    <option value="Tamil" <%=movie.language==="Tamil" ? "selected" : "" %>>Tamil</option>
+                    <option value="Telugu" <%=movie.language==="Telugu" ? "selected" : "" %>>Telugu</option>
+                    <option value="Gujarati" <%=movie.language==="Gujarati" ? "selected" : "" %>>Gujarati</option>
+                    <option value="Marathi" <%=movie.language==="Marathi" ? "selected" : "" %>>Marathi</option>
+                </select>
+            </div>
+
+            <div class="mb-4">
+                <label class="form-label">Movie Poster Image</label>
+                <input type="file" name="image" class="form-control">
+                <% if (movie.image) { %>
+                    <div class="mt-2">
+                        <img src="<%= movie.image %>" alt="Current Poster" width="120">
+                    </div>
+                    <% } %>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Update Movie</button>
+        </form>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
