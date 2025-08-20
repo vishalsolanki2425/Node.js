@@ -1,0 +1,96 @@
+<%- include("header") %>
+
+    <!-- ============================================================== -->
+    <!-- Page wrapper  -->
+    <!-- ============================================================== -->
+    <div class="page-wrapper">
+        <!-- ============================================================== -->
+        <!-- Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+        <div class="page-breadcrumb">
+            <div class="row">
+                <div class="col-12 d-flex no-block align-items-center">
+                    <h4 class="page-title">My Blog</h4>
+                    <div class="ml-auto text-right">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Library</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Container fluid  -->
+        <!-- ============================================================== -->
+        <div class="container-fluid">
+            <!-- ============================================================== -->
+            <!-- Start Page Content -->
+            <!-- ============================================================== -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title m-b-0">View My Blog</h5>
+                        </div>
+                        <div class="row myblog-row">
+                            <% blogs.forEach((blog, i)=> { %>
+                                <div class="col-auto mb-4">
+                                    <h5 class="card-title text-center">
+                                        <%= blog.title %>
+                                    </h5>
+                                    <div class="card shadow-lg" style="width: 300px;">
+                                        <img src="<%= blog.blogimage %>" class="card-img-top" alt="Blog Image"
+                                            style="height:300px; width: 300px; object-fit:cover;">
+                                        <div class="card-body">
+                                            <div class="d-flex justify-content-between">
+                                                <p class="mb-1">By <%= blog.authname %>
+                                                </p>
+                                                <span class="badge">
+                                                    <%= blog.category %>
+                                                </span>
+                                            </div>
+                                            <p class="card-text"
+                                                style="height:40px; overflow:hidden; text-overflow:ellipsis;">
+                                                <%= blog.description.substring(0,100) %>...
+                                            </p>
+                                        </div>
+
+                                        <div class="card-footer d-flex justify-content-between">
+                                            <a href="/blog/singleblogview/<%= blog._id %>" class="btn btn-sm btn-info">Read
+                                                More</a>
+                                            <div>
+                                                <a href="/blog/editblog/<%= blog._id %>"
+                                                    class="btn btn-sm btn-warning"><i class="far fa-edit"></i></a>
+                                                <a href="/blog/blogdelete/<%= blog._id %>"
+                                                    class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <% }) %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- End PAge Content -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- Right sidebar -->
+            <!-- ============================================================== -->
+            <!-- .right-sidebar -->
+            <!-- ============================================================== -->
+            <!-- End Right sidebar -->
+            <!-- ============================================================== -->
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Container fluid  -->
+        <!-- ============================================================== -->
+
+        <%- include("footer") %>
