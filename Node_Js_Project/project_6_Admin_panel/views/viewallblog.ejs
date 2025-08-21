@@ -65,31 +65,38 @@
                                             <h5 class="card-title text-center">
                                                 <%= blog.title %>
                                             </h5>
-                                            <div class="card shadow-lg" style="width: 300px;">
+                                            <div class="card shadow-lg position-relative"
+                                                style="width: 410px; border-radius: 15px;">
                                                 <img src="<%= blog.blogimage %>" class="card-img-top" alt="Blog Image"
-                                                    style="height:300px; width: 300px; object-fit:cover;">
+                                                    style="height:300px; width: 410px; object-fit:cover; border-top-left-radius: 15px; border-top-right-radius: 15px;">
+                                                <span class="badge btn-primary position-absolute"
+                                                    style="top: 10px; right: 10px; padding: 8px 12px; font-size: 14px; border-radius: 8px;">
+                                                    <%= blog.category %>
+                                                </span>
                                                 <div class="card-body">
                                                     <div class="d-flex justify-content-between">
                                                         <p class="mb-1">By <%= blog.authname %>
                                                         </p>
-                                                        <span class="badge">
-                                                            <%= blog.category %>
-                                                        </span>
                                                     </div>
+                                                    <span class="mt-2 mb-1 d-block">
+                                                        Date : 21, August 2025
+                                                    </span>
                                                     <p class="card-text"
                                                         style="height:40px; overflow:hidden; text-overflow:ellipsis;">
                                                         <%= blog.description.substring(0,100) %>...
                                                     </p>
                                                 </div>
-
                                                 <div class="card-footer d-flex justify-content-center">
                                                     <a href="/blog/singleblogview/<%= blog._id %>"
-                                                        class="btn btn-sm btn-info">Read
-                                                        More</a>
+                                                        class="btn btn-sm btn-info"
+                                                        style="border-radius: 5px; width: 50%; padding: 5px; font-size: 13px;">
+                                                        Read More
+                                                    </a>
                                                 </div>
                                             </div>
                                         </div>
-                                    <% }) %>
+                                        <% }) %>
+
                         </div>
                     </div>
                 </div>

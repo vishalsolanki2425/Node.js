@@ -5,17 +5,20 @@
     <!-- ============================================================== -->
     <div class="page-wrapper">
         <!-- ============================================================== -->
-        <!-- Bread crumb and right sidebar toggle -->
+        <!-- Bread crumb -->
         <!-- ============================================================== -->
         <div class="page-breadcrumb">
             <div class="row">
                 <div class="col-12 d-flex no-block align-items-center">
-                    <h4 class="page-title">View Blog</h4>
+                    <h4 class="page-title">Blog Details</h4>
                     <div class="ml-auto text-right">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="/">Home</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Library</li>
+                                <li class="breadcrumb-item"><a href="/blog/viewallblog">Blogs</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">
+                                    <%= blogs.title %>
+                                </li>
                             </ol>
                         </nav>
                     </div>
@@ -23,74 +26,38 @@
             </div>
         </div>
         <!-- ============================================================== -->
-        <!-- End Bread crumb and right sidebar toggle -->
+        <!-- End Bread crumb -->
         <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- Container fluid  -->
-        <!-- ============================================================== -->
-        <div class="container-fluid">
-            <!-- ============================================================== -->
-            <!-- Start Page Content -->
-            <!-- ============================================================== -->
-            <div class="row">
-                <div class="col-12">
-                    <div class="container my-5">
-                        <div class="row justify-content-center">
-                            <div class="col-md-10">
-                                <div class="card shadow-lg border-0 rounded-3 overflow-hidden">
-                                    <div class="row g-0">
-                                        <div class="col-md-6">
-                                            <img src="<%= blogs.blogimage %>" class="img-fluid h-100 w-100"
-                                                alt="Blog Image" style="object-fit: cover;">
-                                        </div>
-                                        <div class="col-md-6 d-flex flex-column">
-                                            <div class="card-body p-4 mt-5">
-                                                <h2 class="card-title text-center mb-5 fw-bold">
-                                                    <%= blogs.title %>
-                                                </h2>
-                                                <div class="d-flex justify-content-between align-items-center mb-3">
-                                                    <p class="mb-0">
-                                                        ✍ By <strong>
-                                                            <%= blogs.authname %>
-                                                        </strong>
-                                                    </p>
-                                                    <span class="badge px-3 py-2">
-                                                        <strong>
-                                                            <%= blogs.category %>
-                                                        </strong>
-                                                    </span>
-                                                </div>
 
-                                                <p class="card-text fs-6 lh-lg">
-                                                    <%= blogs.description %>
-                                                </p>
-                                            </div>
-                                            <div class="card-footer bg-light text-center mt-auto">
-                                                <a href="/blog/viewallblog" class="btn btn-outline-primary px-4">
-                                                    ← Back to Blogs
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <!-- ============================================================== -->
+        <!-- Container fluid -->
+        <!-- ============================================================== -->
+        <div class="container my-5">
+            <h1 class="fw-bold text-center mb-4">
+                <%= blogs.title %> ( <%= blogs.category %> )
+            </h1>
+            <div class="d-flex justify-content-center mb-3">
+                <span>✍ By <strong>
+                        <%= blogs.authname %>
+                    </strong></span>
             </div>
-            <!-- ============================================================== -->
-            <!-- End PAge Content -->
-            <!-- ============================================================== -->
-            <!-- ============================================================== -->
-            <!-- Right sidebar -->
-            <!-- ============================================================== -->
-            <!-- .right-sidebar -->
-            <!-- ============================================================== -->
-            <!-- End Right sidebar -->
-            <!-- ============================================================== -->
+            <div class="d-flex justify-content-center mb-4">
+                <span> 21, August 2025</span>
+            </div>
+            <div class="mb-5 text-center">
+                <img src="<%= blogs.blogimage %>" alt="Blog Image" class="img-fluid rounded shadow"
+                    style="max-height: 500px; object-fit: cover; width: 100%;">
+            </div>
+            <div class="fs-5 lh-lg px-3">
+                <%= blogs.description %>
+            </div>
+            <div class="text-center mt-5 mb-3">
+                <a href="/blog/viewallblog" class="btn btn-outline-primary px-4">← Back to Blogs</a>
+            </div>
         </div>
         <!-- ============================================================== -->
-        <!-- End Container fluid  -->
+        <!-- End Container fluid -->
         <!-- ============================================================== -->
+    </div>
 
-        <%- include("footer") %>
+    <%- include("footer") %>
