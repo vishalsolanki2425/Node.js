@@ -43,9 +43,6 @@
                     </strong>
                 </span>
             </div>
-            <div class="d-flex justify-content-center mb-4">
-                <span> 21, August 2025</span>
-            </div>
             <div class="mb-5 text-center">
                 <img src="<%= blogs.blogimage %>" alt="Blog Image" class="img-fluid rounded shadow"
                     style="max-height: 500px; object-fit: cover; width: 100%;">
@@ -53,9 +50,17 @@
             <h2 class="fw-bold text-center mb-4">
                 <%= blogs.title %> ( <%= blogs.category %> )
             </h2>
+            <div class="mb-3 d-flex justify-content-center">
+                <span style="color: black;">📅</span>
+                <span class="ml-2">21, August 2025</span>
+                <span class="ml-4" style="color: black;">⏰</span>
+                <span class="ml-2">10:30 AM</span>
+            </div>
             <div class="fs-5 lh-lg px-3">
                 <% blogs.description.split("\n").forEach(function(paragraph){ %>
-                    <p><%= paragraph %></p>
+                    <p>
+                        <%= paragraph %>
+                    </p>
                     <% }) %>
             </div>
             <div class="text-center mt-5 mb-3">
