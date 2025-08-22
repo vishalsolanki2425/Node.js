@@ -28,7 +28,7 @@
             style="width:150px; height:150px; object-fit:cover; border:4px solid #000000; margin-left: 130px;"
           />
           <h4 class="mb-2 mt-2">
-            <%= (user?.firstname || "") + " " + (user?.lastname || "") %>
+            <%= (user?.firstname) + " " + (user?.lastname) %>
           </h4>
           <span class="text-muted"><%= user?.role || "User" %></span>
         </div>
