@@ -8,7 +8,7 @@
         <div class="ml-auto text-right">
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
+              <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
               <li class="breadcrumb-item active" aria-current="page">Profile</li>
             </ol>
           </nav>
@@ -18,6 +18,22 @@
   </div>
 
   <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="card shadow-sm text-center p-3">
+          <img 
+            src="<%= user?.image || 'https://img.freepik.com/free-vector/smiling-young-man-illustration_1308-174669.jpg' %>" 
+            alt="User Image" 
+            class="rounded-circle mb-3 mt-3"
+            style="width:150px; height:150px; object-fit:cover; border:4px solid #000000; margin-left: 130px;"
+          />
+          <h4 class="mb-2 mt-2">
+            <%= (user?.firstname || "") + " " + (user?.lastname || "") %>
+          </h4>
+          <span class="text-muted"><%= user?.role || "User" %></span>
+        </div>
+      </div>
+
       <div class="col-lg-8">
         <div class="card shadow-sm">
           <div class="card-header d-flex justify-content-between align-items-center">
@@ -31,45 +47,37 @@
               <div class="col-md-6">
                 <label class="text-muted mb-0">Full Name</label>
                 <div class="h6">
-                <%= user?.firstname && user?.lastname 
-                        ? user.firstname + " " + user.lastname 
-                        : user?.firstname || user?.lastname || "—" %>
+                  <%= (user?.firstname || "") + " " + (user?.lastname || "") %>
                 </div>
               </div>
+              <div class="col-md-6">
+                <label class="text-muted mb-0">Contact No</label>
+                <div class="h6"><%= user?.contactno || "—" %></div>
+              </div>
+            </div>
+
+            <div class="row mb-3">
               <div class="col-md-6">
                 <label class="text-muted mb-0">Email</label>
                 <div class="h6"><%= user?.email || "—" %></div>
               </div>
+              <div class="col-md-6">
+                <label class="text-muted mb-0">Password</label>
+                <div class="h6"><%= user?.password ? "********" : "—" %></div>
+              </div>
             </div>
 
             <div class="row mb-3">
               <div class="col-md-6">
-                <label class="text-muted mb-0">Phone</label>
-                <div class="h6"><%= user?.contactno || "—" %></div>
+                <label class="text-muted mb-0">Gender</label>
+                <div class="h6"><%= user?.gender || "—" %></div>
               </div>
               <div class="col-md-6">
-                <label class="text-muted mb-0">Role</label>
-                <div class="h6 text-uppercase"><%= user?.role || "User" %></div>
+                <label class="text-muted mb-0">Hobbies</label>
+                <div class="h6"><%= user?.hobbies || "—" %></div>
               </div>
             </div>
 
-            <div class="row mb-3">
-              <div class="col-md-12">
-                <label class="text-muted mb-0">Address</label>
-                <div class="h6"><%= user?.address || "Xyz" %></div>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col-md-6">
-                <label class="text-muted mb-0">City</label>
-                <div class="h6"><%= user?.city || "Xyz" %></div>
-              </div>
-              <div class="col-md-6">
-                <label class="text-muted mb-0">Country</label>
-                <div class="h6"><%= user?.country || "India" %></div>
-              </div>
-            </div>
           </div>
         </div>
       </div>
