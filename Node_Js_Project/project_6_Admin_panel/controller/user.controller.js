@@ -99,3 +99,17 @@ exports.deleteUser = async (req, res) => {
         console.log("error", error);
     }
 }
+
+exports.userprofile = async (req, res) => {
+    try {
+        const id = req.cookies.admin._id;
+        const user = await userSchema.findById(id);
+        if (!user) {
+            return res.redirect("/");
+        }
+        return res.render("profile", { user });
+    } catch (error) {
+        console.log("viewProfile error:", error);
+        return res.redirect("/");
+    }
+}
