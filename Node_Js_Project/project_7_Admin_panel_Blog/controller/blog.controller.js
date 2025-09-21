@@ -55,7 +55,7 @@ exports.addBlog = async (req, res) => {
         });
 
         await newBlog.save();
-
+        req.flash("success", 'Blog Added Successfully.');
         return res.redirect("/blog/viewallblog");
     } catch (error) {
         console.log("error", error);
@@ -93,8 +93,8 @@ exports.editBlog = async (req, res) => {
             blogpath = `/uploads/${req.file.filename}`;
         }
         await blogSchema.findByIdAndUpdate(id, { ...req.body, blogimage: blogpath }, { new: true });
-
         console.log("Blog Updated Successfully");
+        req.flash("success", 'Blog Update Successfully.');
         res.redirect('/blog/myblog');
     } catch (err) {
         console.error(err);
@@ -106,15 +106,19 @@ exports.blogdelete = async (req, res) => {
     try {
         let id = req.params.id;
         let blog = await blogSchema.findById(id);
+
         if (blog.blogimage) {
-            let blogpath = path.join(__dirname, '..', blog.blogimage)
+            let blogpath = path.join(__dirname, '..', blog.blogimage);
             if (blogpath != "") {
                 await fs.unlinkSync(blogpath);
             }
-            await blogSchema.findByIdAndDelete(id)
-            console.log("users Delete Successfully")
-            res.redirect("/blog/myblog")
+            await blogSchema.findByIdAndDelete(id);
+
+            console.log("Blog Delete Successfully");
+            req.flash("success", 'Blog Delete Successfully.');
+            return res.redirect("/blog/myblog");
         }
+
     } catch (error) {
         console.log("error", error);
         return res.redirect("/");

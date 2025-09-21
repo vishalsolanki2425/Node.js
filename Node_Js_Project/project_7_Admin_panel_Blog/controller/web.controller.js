@@ -6,6 +6,7 @@ const passport = require("passport");
 exports.homepage = async (req, res) => {
     try {
         let blogs = await blogSchema.find();
+        req.flash("success", 'Welcome To My Blog Website.');
         res.render("web/home", { blogs });
     } catch (error) {
         console.log("error", error);

@@ -7,6 +7,8 @@ const passport = require('passport');
 const localStrategy = require("./middleware/LocalStrategy");
 const webroute = require("./routers/web.route");
 const path = require("path");
+const flash = require('connect-flash');
+const flashMessage = require("./middleware/flashMessage");
 const port = 8500;
 
 const server = express();
@@ -15,6 +17,9 @@ server.use(express.urlencoded());
 server.use(express.static("public"));
 server.use(cookieParser());
 server.use("/uploads", express.static(path.join(__dirname, "uploads")));
+server.use(express.urlencoded({ extended: true }));
+server.use(express.json());
+server.use(flash());
 
 server.use(session({
     name: "thanks",
@@ -29,6 +34,7 @@ server.use(session({
 server.use(passport.session());
 server.use(passport.initialize());
 server.use(passport.setAutheticatUser);
+server.use(flashMessage.setFlashMessage);
 
 server.use((req, res, next) => {
     res.locals.users = req.user || null;

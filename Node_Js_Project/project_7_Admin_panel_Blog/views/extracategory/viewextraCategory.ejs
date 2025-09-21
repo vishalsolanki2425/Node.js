@@ -1,0 +1,84 @@
+<%- include('../header') %>
+
+    <!-- ============================================================== -->
+    <!-- Page wrapper  -->
+    <!-- ============================================================== -->
+    <div class="page-wrapper">
+        <!-- ============================================================== -->
+        <!-- Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+        <div class="page-breadcrumb">
+            <div class="row">
+                <div class="col-12 d-flex no-block align-items-center">
+                    <h4 class="page-title">Tables</h4>
+                    <div class="ml-auto text-right">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">View Extra Category</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Container fluid  -->
+        <!-- ============================================================== -->
+        <div class="container-fluid">
+            <!-- ============================================================== -->
+            <!-- Start Page Content -->
+            <!-- ============================================================== -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title m-b-0">Static Table</h5>
+                        </div>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Category Name</th>
+                                    <th scope="col">Image</th>
+                                    <th scope="col">Sub Category</th>
+                                    <th scope="col">Extra Category</th>
+                                    <th scope="col" colspan="2">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% extracategory.forEach((extra, i)=> { %>
+                                    <tr>
+                                        <th scope="row"><%= i + 1 %></th>
+                                        <td><%= extra.categoryname.categoryname %></td>
+                                        <td><img src="<%= extra.categoryname.categoryimage %>" height="50" /></td>
+                                        <td><%= extra.subcategoryname.subcategoryname %></td>
+                                        <td><%= extra.extracategoryname %></td>
+                                        <td><a href="/extracategory/editextraCategory/<%= extra._id %>"><i class="fas fa-edit"></i></a></td>
+                                        <td><a href="/extracategory/deleteextraCategory/<%= extra._id %>"><i class="fas fa-trash"></i></a></td>
+                                    </tr>
+                                    <% }) %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- End PAge Content -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- Right sidebar -->
+            <!-- ============================================================== -->
+            <!-- .right-sidebar -->
+            <!-- ============================================================== -->
+            <!-- End Right sidebar -->
+            <!-- ============================================================== -->
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Container fluid  -->
+        <!-- ============================================================== -->
+
+<%- include('../footer') %>

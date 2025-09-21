@@ -3,14 +3,20 @@ const { dashboard, getlogin, postlogin, logOut, forgotPassword, sendEmail, verif
 const usersrouter = require("./user.route");
 const blogroute = require("./blog.route");
 const router = express.Router();
-const passport = require('../middleware/LocalStrategy');
+const passport = require('passport');
+const categoryroute = require("./category.route");
+const subcategoryroute = require("./subcategory.route");
+const extracategoryroute = require("./extracategory.route");
 
 router.get("/", getlogin);
-router.post("/loginUser", postlogin);
+router.post("/loginUser", passport.authenticate('local', { failureRedirect: "/" }), postlogin);
 router.get("/logOut", logOut);
 router.get("/dashboard", passport.checkAuthentication, dashboard);
 router.use("/users", usersrouter);
 router.use("/blog", blogroute);
+router.use("/category", categoryroute);
+router.use("/subcategory", subcategoryroute);
+router.use("/extracategory", extracategoryroute);
 
 
 router.get("/forgot-password", forgotPassword);

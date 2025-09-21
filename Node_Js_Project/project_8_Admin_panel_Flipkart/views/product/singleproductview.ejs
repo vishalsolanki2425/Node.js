@@ -1,0 +1,48 @@
+<%- include('../header') %>
+
+<div class="container mt-5">
+    <div class="card shadow-lg p-4">
+        <div class="row">
+            <!-- Product Image -->
+            <div class="col-md-5 text-center">
+                <% if (product.productimage) { %>
+                    <img src="<%= product.productimage %>" 
+                         alt="<%= product.name %>" 
+                         class="img-fluid rounded shadow-sm" 
+                         style="max-height: 350px;">
+                <% } else { %>
+                    <img src="https://via.placeholder.com/350" 
+                         alt="No Image" 
+                         class="img-fluid rounded shadow-sm">
+                <% } %>
+            </div>
+
+            <!-- Product Details -->
+            <div class="col-md-7">
+                <h2 class="mb-3"><%= product.name %></h2>
+                <h4 class="text-success">₹ <%= product.price %></h4>
+                <p class="mt-3"><strong>Description:</strong> <%= product.description %></p>
+                
+                <% if (product.categoryname) { %>
+                    <p><strong>Category:</strong> <%= product.categoryname.categoryname %></p>
+                <% } %>
+                
+                <% if (product.subcategoryname) { %>
+                    <p><strong>Sub Category:</strong> <%= product.subcategoryname.subcategoryname %></p>
+                <% } %>
+                
+                <% if (product.extracategoryname) { %>
+                    <p><strong>Extra Category:</strong> <%= product.extracategoryname.extracategoryname %></p>
+                <% } %>
+
+                <div class="mt-4">
+                    <a href="/product/viewproduct" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left"></i> Back
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include('../footer') %>

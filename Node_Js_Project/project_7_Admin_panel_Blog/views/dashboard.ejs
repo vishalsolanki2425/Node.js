@@ -804,3 +804,46 @@
         <!-- ============================================================== -->
 
 <%- include("footer") %>
+
+<!-- <% if (locals.flash.success && locals.flash.success.length > 0) { %>
+        Swal.fire({
+            title: "<%= locals.flash.success %>",
+            text: "You clicked the button!",
+            icon: "success"
+        });
+        const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 2500,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+            }
+        });
+        Toast.fire({
+            icon: "success",
+            title: "<%= locals.flash.success %>"
+        });                   
+    <% } %>
+
+    // Error Message
+    <% if (locals.flash.error && locals.flash.error.length > 0) { %>
+         const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 2500,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+            }
+        });
+        Toast.fire({
+            icon: "error",
+            title: "<%= locals.flash.error %>"
+        });                   
+    <% } %>
+</script> -->
