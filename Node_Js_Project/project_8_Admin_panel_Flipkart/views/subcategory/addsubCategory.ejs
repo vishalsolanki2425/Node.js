@@ -41,7 +41,7 @@
                                 <div class="form-group row">
                                     <label for="lname" class="col-sm-3 text-right control-label col-form-label">Category Name</label>
                                     <div class="col-sm-9">
-                                    <select class="form-control" name="categoryname">
+                                    <select class="form-control" name="categoryname" required >
                                         <option value="">Select Category</option>
                                         <% categories.forEach((cat) => { %>
                                             <option value="<%= cat._id %>"><%= cat.categoryname %></option>
