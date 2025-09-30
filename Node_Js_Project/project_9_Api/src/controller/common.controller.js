@@ -30,7 +30,6 @@ exports.userEdit = async (req, res) => {
     try {
         let userId = req.user._id;
         let singleUser = await User.findById(userId);
-        console.log(singleUser);
         let imagePath = singleUser.profileImage;
 
         if (req.file) {
@@ -75,7 +74,6 @@ exports.userEdit = async (req, res) => {
 exports.userviewall = async (req, res) => {
     try {
         let viewAll = await User.find({ role: req.body.role });
-        console.log(viewAll);
         return res.json({ status: 200, allAdmin: viewAll, message: "view all Admin" });
 
     } catch (error) {
