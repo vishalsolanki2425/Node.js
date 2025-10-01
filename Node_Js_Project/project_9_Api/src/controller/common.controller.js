@@ -15,10 +15,17 @@ exports.userprofile = async (req, res) => {
 
 exports.userDelete = async (req, res) => {
     try {
-        let id = req.user._id;
-        let user = await User.findByIdAndUpdate(id, { isDelete: true });
-        console.log(user);
-        return res.json({ status: 200, user: req.user, message: " Delete successfully" });
+        let id = req.params.id;
+        let single = await User.findById(id);
+
+        if (req.user.id === single.id && req.user.id === single.id) {
+            return res.json({ status: 403, message: "Admin Cannot Delete" });
+        }
+
+        if ((req.user.id === single.id) || (req.user.role === "Admin") || (single.role === "Employee" && req.user.role === "Manager")) {
+            await User.findByIdAndUpdate(id, { isDelete: true });
+            return res.json({ status: 200, message: " Delete successfully" });
+        }
 
     } catch (error) {
         console.log(error);
@@ -28,43 +35,47 @@ exports.userDelete = async (req, res) => {
 
 exports.userEdit = async (req, res) => {
     try {
-        let userId = req.user._id;
+        let userId = req.params.id;
         let singleUser = await User.findById(userId);
         let imagePath = singleUser.profileImage;
 
-        if (req.file) {
-            let oldImage = singleUser.profileImage;
-
-            if (oldImage && oldImage !== "") {
-                let oldImagepath = path.join(__dirname, "..", oldImage.replace(/^\//, ""));
-                console.log("Trying to delete:", oldImagepath);
-
-                try {
-                    fs.unlinkSync(oldImagepath);
-                    console.log("Old Image Deleted Successfully");
-                } catch (error) {
-                    console.log("Old image not found or already deleted");
-                }
-            }
-
-            imagePath = `uploads/${req.body.role}-Images/${req.file.filename}`;
+        if ((req.user.role === "Admin" && singleUser.role === "Admin") && (req.user.id != singleUser.id)) {
+            return res.json({ status: 403, message: "Admin Cannot Edit Anohther Admin" });
         }
 
+        if ((req.user.id === singleUser.id) || (req.user.role === "Admin") || (singleUser.role === "Employee" && req.user.role === "Manager")) {
+            if (req.file) {
+                let oldImage = singleUser.profileImage;
 
-        let hashPassword = await bcrypt.hash(req.body.password, 10)
+                if (oldImage && oldImage !== "") {
+                    let oldImagepath = path.join(__dirname, "..", oldImage.replace(/^\//, ""));
+                    console.log("Trying to delete:", oldImagepath);
 
-        let updatedUser = await User.findByIdAndUpdate(
-            userId,
-            {
-                ...req.body,
-                profileImage: imagePath,
-                password: hashPassword
-            },
-            { new: true }
-        );
+                    try {
+                        fs.unlinkSync(oldImagepath);
+                    } catch (error) {
+                        console.log("Old image not found or already deleted");
+                    }
+                }
 
-        console.log(updatedUser);
-        return res.json({ status: 200, user: req.user, message: "User Edited Successfully" });
+                imagePath = `uploads/${req.body.role}-Images/${req.file.filename}`;
+            }
+
+
+            let hashPassword = await bcrypt.hash(req.body.password, 10)
+
+            await User.findByIdAndUpdate(
+                userId,
+                {
+                    ...req.body,
+                    profileImage: imagePath,
+                    password: hashPassword
+                },
+                { new: true }
+            );
+
+            return res.json({ status: 200, message: "User Edited Successfully" });
+        }
     } catch (error) {
         console.log(error);
         return res.json({ status: 500, message: 'Server Error' });
@@ -73,11 +84,13 @@ exports.userEdit = async (req, res) => {
 
 exports.userviewall = async (req, res) => {
     try {
-        let viewAll = await User.find({ role: req.body.role });
-        return res.json({ status: 200, allAdmin: viewAll, message: "view all Admin" });
+        const { role } = req.query;
+        let filter = role ? { role } : {};
+        let viewAll = await User.find(filter);
 
+        return res.json({ status: 200, users: viewAll, message: "Users fetched successfully" });
     } catch (error) {
-        console.log(error);
-        return res.json({ status: 500, message: 'Server Error' });
+        console.error(error);
+        return res.status(500).json({ status: 500, message: 'Server Error' });
     }
 };

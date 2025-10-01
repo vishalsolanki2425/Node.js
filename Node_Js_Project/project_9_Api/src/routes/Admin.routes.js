@@ -6,8 +6,8 @@ const uploadImage = require("../middleware/multer.middleware");
 const routes = express.Router();
 
 routes.get("/userprofile", verifytoken, Roleverify("Admin"), userprofile);
-routes.put("/userdelete", verifytoken, Roleverify("Admin"), userDelete);
-routes.put("/useredit", verifytoken, Roleverify("Admin"), uploadImage.single("profileImage"), userEdit);
+// routes.put("/userdelete/:id", verifytoken, Roleverify("Admin"), userDelete);
+routes.put("/useredit/:id", verifytoken, Roleverify("Admin"), uploadImage.single("profileImage"), userEdit);
 routes.get("/userviewall", verifytoken, Roleverify("Admin"), userviewall);
 
 module.exports = routes;
