@@ -84,11 +84,18 @@ exports.userEdit = async (req, res) => {
 
 exports.userviewall = async (req, res) => {
     try {
-        const { role } = req.query;
-        let filter = role ? { role } : {};
-        let viewAll = await User.find(filter);
-
-        return res.json({ status: 200, users: viewAll, message: "Users fetched successfully" });
+        if (req.user.role == "Admin") {
+            let viewAll = await User.find();
+            return res.json({ status: 200, users: viewAll, message: "Users fetched successfully" });
+        }
+        if (req.user.role == "Manager") {
+            let viewAll = await User.find({ role: { $nin: ["Admin"] } });
+            return res.json({ status: 200, users: viewAll, message: "Users fetched successfully" });
+        }
+        if (req.user.role == "Employee") {
+            let viewAll = await User.find({ role: "Employee"});
+            return res.json({ status: 200, users: viewAll, message: "Users fetched successfully" });
+        }
     } catch (error) {
         console.error(error);
         return res.status(500).json({ status: 500, message: 'Server Error' });

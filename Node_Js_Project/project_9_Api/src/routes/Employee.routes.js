@@ -9,6 +9,6 @@ const routes = express.Router();
 routes.post("/employeeadd", verifytoken, Roleverify("Admin", "Manager"), uploadImage.single("profileImage"), registerUser);
 routes.put("/employeeedit/:id", verifytoken, uploadImage.single("profileImage"), userEdit);
 routes.put("/employeedelete/:id", verifytoken, userDelete);
-routes.get("/viewallemployee", verifytoken, Roleverify("Admin", "Manager", "Employee"), userviewall);
+routes.get("/viewallemployee", verifytoken, Roleverify("Employee"), userviewall);
 
 module.exports = routes;

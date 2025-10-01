@@ -9,6 +9,7 @@ const routes = express.Router();
 routes.post("/manageradd", verifytoken, Roleverify("Admin"), uploadImage.single("profileImage"), registerUser);
 routes.put("/manageredit/:id", verifytoken, Roleverify("Admin", "Manager"), uploadImage.single("profileImage"), userEdit);
 routes.put("/managerdelete/:id", verifytoken, Roleverify("Admin", "Manager"), userDelete);
-routes.get("/viewallmanager", verifytoken, Roleverify("Admin", "Manager"), userviewall);
+routes.get("/viewallmanager", verifytoken, Roleverify("Manager"), userviewall);
+
 
 module.exports = routes;
